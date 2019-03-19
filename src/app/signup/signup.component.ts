@@ -14,12 +14,11 @@ export class SignupComponent implements OnInit {
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required], 
       lastName: ['', Validators.required],
-      email: ['', Validators.required],
+      email: ['', Validators.required,Validators.email],
       password: ['', Validators.required],
       re_password: ['', Validators.required],
       birthDate: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
-
+      phoneNumber: ['', Validators.required,Validators.maxLength(10)],
     });
   }
 
