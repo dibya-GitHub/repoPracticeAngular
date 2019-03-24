@@ -8,11 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './parent/child/child.component';
-import { RestcountriesService } from './restcountries.service';
+import { RestcountriesService } from './service/restcountries.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { RangeSliderComponent } from './range-slider/range-slider.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     HomeComponent,
     LoginComponent,
     DashboardComponent,
-    SignupComponent
+    SignupComponent,
+    RangeSliderComponent
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestcountriesService } from '../restcountries.service';
+import { RestcountriesService } from '../service/restcountries.service';
 
 @Component({
   selector: 'app-parent',
