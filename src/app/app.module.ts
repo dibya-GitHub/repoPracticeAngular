@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RangeSliderComponent } from './range-slider/range-slider.component';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RangeSliderComponent } from './range-slider/range-slider.component';
     LoginComponent,
     DashboardComponent,
     SignupComponent,
-    RangeSliderComponent
+    RangeSliderComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
