@@ -133,5 +133,8 @@
       }
     }
   },
-  "defaultProject": "elearnweb"
+  "defaultProject": "elearnweb",
+  "cli": {
+    "analytics": "ffc19a81-97f1-4f72-925e-541fc55d808b"
+  }
 }
