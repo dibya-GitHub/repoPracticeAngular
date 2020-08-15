@@ -54,6 +54,8 @@ import { ParentComponent } from "./parent/parent.component";
 import { RestcountriesService } from "./service/restcountries.service";
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
 import { SignupComponent } from "./signup/signup.component";
+import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,6 +69,8 @@ import { SignupComponent } from "./signup/signup.component";
     CreateEmployeeComponent,
     EmployeeDetailsComponent,
     UpdateEmployeeComponent,
+    FooterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
