@@ -18,11 +18,12 @@
                   <div class="has-error" *ngIf="form.email.errors.email"> *It's not a valid Email</div>
                 </div>
               </div>
-            </div> 
+            </div>
             <div class="form-group row">
               <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
               <div class="col-md-6">
-                <input type="password" formControlName="password" id="password" class="form-control" name="password" required>
+                <input type="password" formControlName="password" id="password" class="form-control" name="password"
+                  required>
                 <div *ngIf="submitted && form.password.errors">
                   <div class="has-error" *ngIf="form.password.errors?.required">password is required</div>
                   <div class="has-error" *ngIf="form.password.errors.minLength">*Minimum Length is 6</div>

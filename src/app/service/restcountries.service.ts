@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
-
 import { HttpClient } from '@angular/common/http';
 import { CanActivate, CanDeactivate, CanActivateChild } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RestcountriesService implements CanActivate ,CanActivateChild {
+export class RestcountriesService implements CanActivate, CanActivateChild {
 
   private _countriesurl = 'https://restcountries.eu/rest/v2/all';
   constructor(private _http: HttpClient) { }
@@ -14,11 +13,11 @@ export class RestcountriesService implements CanActivate ,CanActivateChild {
   getCountries() {
     return this._http.get(this._countriesurl);
   }
-  canActivate(){
+  canActivate() {
     console.log("CanActivate");
     return true;
   }
-  canActivateChild(){
+  canActivateChild() {
     console.log("CanActivate");
     return true;
   }
