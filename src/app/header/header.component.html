@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="inner-header">
       <div class="logo">
-        <a href="./index.html"><img src="../../assets/images/logo.png" alt="" width="170" height="58"></a>
+        <a routerLink="/"><img src="../../assets/images/logo.png" alt="" width="170" height="58"></a>
       </div>
       <div class="header-right">
         <img src="../../assets/images/search.png" alt="" class="search-trigger">
@@ -13,12 +13,13 @@
         </a>
       </div>
       <div class="user-access">
-        <a href="#">Register</a>
-        <a href="#" class="in">Sign in</a>
+        <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Register /
+        </a>
+        <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Login</a>
       </div>
       <nav class="main-menu mobile-menu">
         <ul>
-          <li><a href="./index.html">Home</a></li>
+          <li><a routerLink="/">Home</a></li>
           <li><a href="./categories.html">Shop</a>
             <ul class="sub-menu">
               <li><a href="product-page.html">Product Page</a></li>
@@ -35,7 +36,7 @@
   </div>
 </header>
 <!-- Features Section Begin -->
-<section class="features-section spad">
+<!-- <section class="features-section spad">
   <div class="features-ads">
     <div class="container">
       <div class="row">
@@ -64,4 +65,4 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->

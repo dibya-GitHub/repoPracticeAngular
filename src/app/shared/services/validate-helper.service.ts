@@ -5,7 +5,7 @@ import { FormGroup, FormControl, FormArray } from '@angular/forms';
   providedIn: 'root'
 })
 export class ValidationHelperService {
-  constructor() {}
+  constructor() { }
 
   validateAllFormFields(formGroup: FormGroup | FormArray) {
     Object.keys(formGroup.controls).forEach(field => {
