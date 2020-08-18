@@ -23,12 +23,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private validationHelper: ValidationHelperService,
     private commonService: CommonService,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
     this.createLoginForm();
     this.createRegisterForm();
+
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
@@ -49,7 +50,7 @@ export class LoginComponent implements OnInit {
       this.commonService.login(values).subscribe((res: any) => {
         if (res.statusCode === 200) {
           sessionStorage.setItem('token', res.token);
-          this.router.navigate(['/employee']);
+          this.router.navigate(['/profile']);
         }
       }, error => {
         console.log(error);
@@ -65,7 +66,19 @@ export class LoginComponent implements OnInit {
   }
   onSubmitRegister() {
     if (this.registerForm.valid) {
-      console.log(this.registerForm.value);
+      let values = this.registerForm.value;
+      this.commonService.register(values).subscribe((res: any) => {
+        if (res.statusCode === 200) {
+          sessionStorage.setItem('token', res.token);
+          sessionStorage.setItem("userData", JSON.stringify(res.userData));
+          this.router.navigate(['/profile']);
+          this.openSnackBar(res.statusMessage);
+
+        }
+      }, error => {
+        console.log(error);
+        this.openSnackBar(error.error.msg);
+      })
     } else {
       this.validationHelper.validateAllFormFields(this.registerForm);
     }

@@ -50,18 +50,53 @@ import { UpdateEmployeeComponent } from "./employee/update-employee/update-emplo
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from "./login/login.component";
-import { ChildComponent } from "./parent/child/child.component";
-import { ParentComponent } from "./parent/parent.component";
 import { CommonService } from './service/common/common.service';
 import { TokenInterceptorService } from './service/common/token-interceptor.service';
-import { RestcountriesService } from "./service/restcountries.service";
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
 import { SignupComponent } from "./signup/signup.component";
+
+import {
+  NgxUiLoaderModule,
+  NgxUiLoaderConfig,
+  SPINNER,
+  POSITION,
+  PB_DIRECTION
+} from 'ngx-ui-loader';
+import { ProfileComponent } from './profile/profile.component';
+import { NumberDigitDirective } from './shared/directives/number-digit.directive';
+import { NoDecimalDirective } from './shared/directives/no-decimal.directive';
+import { PercentageDirective } from './shared/directives/percentage.directive';
+import { MycurrencyDirective } from './shared/directives/mycurrency.directive';
+import { AutofocusDirective } from './shared/directives/autofocus.directive';
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  bgsColor: "red",
+  bgsOpacity: 0.5,
+  bgsPosition: "bottom-right",
+  bgsSize: 60,
+  bgsType: "ball-spin-clockwise",
+  blur: 5,
+  fgsColor: "#f2fe00",
+  fgsPosition: "center-center",
+  fgsSize: 60,
+  fgsType: "three-strings",
+  gap: 24,
+  logoPosition: "center-center",
+  logoSize: 120,
+  logoUrl: "",
+  masterLoaderId: "master",
+  overlayBorderRadius: "0",
+  overlayColor: "rgba(40, 40, 40, 0.8)",
+  pbColor: "#ff0430",
+  pbDirection: "ltr",
+  pbThickness: 3,
+  hasProgressBar: true,
+  text: "Loading...",
+  textColor: "#ffffff",
+  textPosition: "center-center",
+};
 @NgModule({
   declarations: [
     AppComponent,
-    ParentComponent,
-    ChildComponent,
     LoginComponent,
     DashboardComponent,
     SignupComponent,
@@ -71,6 +106,12 @@ import { SignupComponent } from "./signup/signup.component";
     UpdateEmployeeComponent,
     FooterComponent,
     HeaderComponent,
+    ProfileComponent,
+    NumberDigitDirective,
+    NoDecimalDirective,
+    PercentageDirective,
+    MycurrencyDirective,
+    AutofocusDirective,
   ],
   imports: [
     BrowserModule,
@@ -114,6 +155,7 @@ import { SignupComponent } from "./signup/signup.component";
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
   ],
   providers: [
     {
@@ -121,7 +163,6 @@ import { SignupComponent } from "./signup/signup.component";
       useClass: TokenInterceptorService,
       multi: true
     },
-    RestcountriesService,
     ValidationHelperService,
     CommonService
   ],

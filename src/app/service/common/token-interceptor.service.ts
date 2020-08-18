@@ -3,6 +3,8 @@ import { HttpHandler, HttpEvent, HttpRequest, HttpHeaders } from '@angular/commo
 import { Observable } from 'rxjs';
 import { CommonService } from './common.service';
 import { Router, ActivatedRoute } from "@angular/router";
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { tap } from 'rxjs/operators';
 
 import {
   MatSnackBar,
@@ -19,29 +21,35 @@ export class TokenInterceptorService {
   constructor(
     private commonService: CommonService,
     private _snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private ngxService: NgxUiLoaderService
   ) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let isLogin = req.url.includes('/login');
-    if (!isLogin) {
-      const token = this.commonService.getAuthToken();
-      if (token) {
-        var reqHeader = new HttpHeaders({
-          'Content-Type': 'application/json',
-          // 'Authorization': token
-        });
-        //   if (token) {
-        //     reqHeader = reqHeader.append('token', token);
-        //   }
-        const authReq = req.clone({ headers: reqHeader });
-        return next.handle(authReq);
-      } else {
-        this.openSnackBar('Client is not Autherized');
-        this.router.navigate(['/login']);
-      }
+  addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
+    const urlValue = (req.url.indexOf("login") > -1 || req.url.indexOf("signup") > -1);
+    let loginhistory = req.url.indexOf("login-histories") > -1;
+    if (loginhistory) {
+      req = req.clone({ setHeaders: { Authorization: token } });
+    } else if (urlValue === true) {
+
     } else {
-      return next.handle(req);
+      req = req.clone({ setHeaders: { Authorization: token } });
     }
+    this.ngxService.stop();
+    return req;
+  }
+  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.ngxService.start();
+    let authToken = this.commonService.getAuthToken();
+    let authReq = req;
+
+    return next.handle(this.addToken(authReq, authToken))
+      .pipe(tap((event: HttpEvent<any>) => {
+      }, (err: any) => {
+        if (err.status === 500) {
+          console.log("Error--", err);
+
+        }
+      }));
   }
   openSnackBar(msg) {
     this._snackBar.open(msg, 'End now', {

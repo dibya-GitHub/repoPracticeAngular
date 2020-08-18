@@ -1,12 +1,14 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[appNumberonly]'
+  selector: '[appNoDecimal]'
 })
-export class NumberonlyDirective {
-  private regex: RegExp = new RegExp(/^\-?[0-9]+(\.[0-9]*){0,1}$/g);
+export class NoDecimalDirective {
+  private regexNoDecimel: RegExp = new RegExp(/^\d+$/g);
   private specialKeys: Array<string> = ['Backspace', 'Tab', 'End', 'Home', 'Delete', 'ArrowLeft', 'ArrowRight'];
+
   constructor(private el: ElementRef) {
+
   }
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
@@ -15,8 +17,10 @@ export class NumberonlyDirective {
     }
     let current: string = this.el.nativeElement.value;
     let next: string = current.concat(event.key);
-    if (next && !String(next).match(this.regex)) {
+    if (next && !String(next).match(this.regexNoDecimel)) {
       event.preventDefault();
     }
   }
+
 }
+

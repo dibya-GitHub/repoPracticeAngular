@@ -5,18 +5,15 @@ import { EmployeeDetailsComponent } from "./employee/employee-details/employee-d
 import { EmployeeListComponent } from "./employee/employee-list/employee-list.component";
 import { UpdateEmployeeComponent } from "./employee/update-employee/update-employee.component";
 import { LoginComponent } from "./login/login.component";
-import { ParentComponent } from "./parent/parent.component";
-import { RestcountriesService } from "./service/restcountries.service";
+import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from "./signup/signup.component";
+
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "/" },
-  {
-    path: "country",
-    pathMatch: "full",
-    component: ParentComponent, canActivate: [RestcountriesService],
-  },
   { path: "login", pathMatch: "full", component: LoginComponent },
   { path: "signup", pathMatch: "full", component: SignupComponent },
+  { path: "profile", pathMatch: "full", component: ProfileComponent },
+
   {
     path: "employee",
     pathMatch: "full",

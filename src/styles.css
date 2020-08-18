@@ -1746,7 +1746,8 @@ ol {
 	color: #1e1e1e;
 	margin-bottom: 75px;
 	padding-bottom: 14px;
-	border-bottom: 2px solid #D0D7DB;
+  border-bottom: 2px solid #D0D7DB;
+  text-align: center;
 }
 
 .checkout-form .in-name {
@@ -2357,3 +2358,88 @@ ol {
 		padding: 10px 0;
 	}
 }
+
+
+
+/* lezada-------css */
+.error-danger{
+  color:#a94442;
+  font-size: 12px;
+}
+.lezada-form.login-form {
+  padding: 60px 50px;
+  background-color: #f7f7f7;
+}
+.lezada-form.login-form--register {
+  padding: 60px 50px;
+}
+.space-mb--50, .space-mb--r50 {
+  margin-bottom: 50px;
+}
+.space-mb--30 {
+  margin-bottom: 30px;
+}
+.space-mb--60, .space-mb--r60 {
+  margin-bottom: 60px;
+}
+.lezada-form.login-form--register label {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #333;
+}
+.lezada-form form input[type=email], .lezada-form form input[type=password], .lezada-form form input[type=text], .lezada-form form textarea {
+  font-size: 14px;
+  display: block;
+  width: 100%;
+  padding: 9.5px 0;
+  transition: all .3s ease-in-out;
+  color: #333;
+  border: 1px solid transparent;
+  border-bottom: 2px solid #ccc;
+  background: transparent;
+}
+.lezada-form.login-form--register label {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 24px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #333;
+}
+.lezada-button--medium {
+  font-size: 14px;
+  padding: 15px 40px;
+}
+.lezada-form.login-form .remember-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  color: #333;
+}
+.lezada-button {
+  font-weight: 500;
+  display: inline-block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  border: 1px solid #333;
+  border-radius: 0;
+  background-color: #333;
+}
+.lezada-form.login-form .reset-pass-link {
+  font-size: 15px;
+  line-height: 24px;
+  display: block;
+  margin-top: 20px;
+  color: #333;
+}
+.lezada-form.login-form .remember-text {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 25px;
+  color: #333;
+}
+

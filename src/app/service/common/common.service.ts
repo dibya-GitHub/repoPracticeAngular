@@ -17,5 +17,10 @@ export class CommonService {
   login(body: any) {
     return this.http.post(this.baseUrl + '/user/login', body);
   }
-
+  register(body: any) {
+    return this.http.post(this.baseUrl + '/user/signup', body);
+  }
+  logout(body: any) {
+    return this.http.post(this.baseUrl + '/user/logout', body);
+  }
 }
