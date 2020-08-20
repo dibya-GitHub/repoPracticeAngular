@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { AuthService } from './service/common/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +10,16 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 })
 export class AppComponent {
   title = 'elearnweb';
+  isLoggedIn: Boolean;
 
-  constructor(private ngxService: NgxUiLoaderService) {
+  constructor(
+    private ngxService: NgxUiLoaderService,
+    private route: Router,
+    private auth: AuthService
+  ) {
 
   }
   ngOnInit() {
-
+    console.log(this.auth.isLoggedIn)
   }
 }

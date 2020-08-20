@@ -12,17 +12,26 @@
           <span>2</span>
         </a>
       </div>
-      <div class="user-access">
-        <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Register /
-        </a>
-        <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Login</a>
+      <div class="user-access" *ngIf="!isLoggedIn;else logOut">
+        <!-- <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Register /
+        </a> -->
+        <a data-toggle="modal" data-target="#registerModalForm">Register / </a>
+        <!-- <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Login</a> -->
+        <a data-toggle="modal" data-target="#loginModalForm">&nbsp;Login</a>
       </div>
+      <ng-template #logOut>
+        <div class="user-access">
+          <a (click)="signOut()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Logout
+          </a>
+        </div>
+      </ng-template>
       <nav class="main-menu mobile-menu">
         <ul>
           <li><a routerLink="/">Home</a></li>
           <li><a href="./categories.html">Shop</a>
             <ul class="sub-menu">
-              <li><a href="product-page.html">Product Page</a></li>
+              <li><a href=" product-page.html">Product Page</a>
+              </li>
               <li><a href="shopping-cart.html">Shopping Card</a></li>
               <li><a href="check-out.html">Check out</a></li>
             </ul>

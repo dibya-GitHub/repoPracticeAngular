@@ -1,5 +1,7 @@
-<div class="container" style="padding: 50px 0;">
-  <div class="space-mb-mobile-only--50 col-lg-6">
+<div class="modal fade" id="loginModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
     <div class="lezada-form login-form">
       <form [formGroup]="loginForm">
         <div class="row">
@@ -33,7 +35,7 @@
           </div>
 
           <div class="space-mb--30 col-lg-12">
-            <button class="lezada-button lezada-button--medium" (click)="onSubmitLogin()">
+            <button class="lezada-button lezada-button--medium" (click)="onSubmitLogin();" id="btnClosePopup">
               login
             </button>&nbsp;
             <button class="lezada-button lezada-button--medium" type="reset" (click)="onResetLogin()">Reset</button>
@@ -48,7 +50,14 @@
       </form>
     </div>
   </div>
-  <div class="col-lg-6">
+</div>
+<!--Login Modal -->
+
+<!--Register Modal -->
+<div class="modal fade" id="registerModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <!--Content-->
     <div class="lezada-form login-form--register">
       <form [formGroup]="registerForm">
         <div class="row">
@@ -91,7 +100,7 @@
           </div>
 
           <div class="text-center col-lg-12">
-            <button class="lezada-button lezada-button--medium" (click)="onSubmitRegister()">
+            <button class="lezada-button lezada-button--medium" (click)="onSubmitRegister()" id="btnClosePopup">
               register
             </button>&nbsp;
             <button class="lezada-button lezada-button--medium" type="reset" (click)="onResetRegister()">Reset</button>
@@ -101,3 +110,4 @@
     </div>
   </div>
 </div>
+<!--Register Modal -->

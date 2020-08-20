@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Input } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -6,21 +6,23 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   isLoggedIn = false;
   constructor() {
-    const authToken = JSON.parse(sessionStorage.getItem('authToken'));
+    const authToken = sessionStorage.getItem('token');
     if (authToken) {
       this.isLoggedIn = true;
     }
   }
-  setLoginInfo(data: any) {
-    sessionStorage.setItem('authToken', JSON.stringify(data.access_token));
-    sessionStorage.setItem('userData', JSON.stringify(data));
+  setLoginInfo(token: any) {
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('isLoggedIn', "true");
   }
   getAuthToken() {
-    const authToken = JSON.parse(sessionStorage.getItem('authToken'));
+    const authToken = sessionStorage.getItem('token');
     return authToken;
   }
   clearToken() {
     this.isLoggedIn = false;
+    sessionStorage.clear();
+
   }
   getUserData() {
     return JSON.parse(sessionStorage.getItem('userData'));

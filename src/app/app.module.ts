@@ -40,6 +40,7 @@ import {
 } from "@angular/material";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgxUiLoaderConfig, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -50,24 +51,17 @@ import { UpdateEmployeeComponent } from "./employee/update-employee/update-emplo
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from "./login/login.component";
+import { ProfileComponent } from './profile/profile.component';
 import { CommonService } from './service/common/common.service';
 import { TokenInterceptorService } from './service/common/token-interceptor.service';
+import { AutofocusDirective } from './shared/directives/autofocus.directive';
+import { MycurrencyDirective } from './shared/directives/mycurrency.directive';
+import { NoDecimalDirective } from './shared/directives/no-decimal.directive';
+import { NumberDigitDirective } from './shared/directives/number-digit.directive';
+import { PercentageDirective } from './shared/directives/percentage.directive';
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
 import { SignupComponent } from "./signup/signup.component";
 
-import {
-  NgxUiLoaderModule,
-  NgxUiLoaderConfig,
-  SPINNER,
-  POSITION,
-  PB_DIRECTION
-} from 'ngx-ui-loader';
-import { ProfileComponent } from './profile/profile.component';
-import { NumberDigitDirective } from './shared/directives/number-digit.directive';
-import { NoDecimalDirective } from './shared/directives/no-decimal.directive';
-import { PercentageDirective } from './shared/directives/percentage.directive';
-import { MycurrencyDirective } from './shared/directives/mycurrency.directive';
-import { AutofocusDirective } from './shared/directives/autofocus.directive';
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
   bgsOpacity: 0.5,

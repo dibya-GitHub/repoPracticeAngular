@@ -2443,3 +2443,6 @@ ol {
   color: #333;
 }
 
+.mat-form-field{
+  display: block !important;
+}

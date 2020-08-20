@@ -8,6 +8,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { AuthService } from '../service/common/auth.service';
+declare var $: any;
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -18,18 +20,20 @@ export class LoginComponent implements OnInit {
   registerForm: FormGroup;
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
+  isLoggedIn: boolean = false;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private validationHelper: ValidationHelperService,
     private commonService: CommonService,
     private _snackBar: MatSnackBar,
+    private auth: AuthService
+
   ) { }
 
   ngOnInit() {
     this.createLoginForm();
     this.createRegisterForm();
-
   }
   createRegisterForm() {
     this.registerForm = this.fb.group({
@@ -49,17 +53,24 @@ export class LoginComponent implements OnInit {
       let values = this.loginForm.value;
       this.commonService.login(values).subscribe((res: any) => {
         if (res.statusCode === 200) {
-          sessionStorage.setItem('token', res.token);
+          this.auth.setLoginInfo(res.token);
           this.router.navigate(['/profile']);
+          $("#loginModalForm").modal("hide");
+          $("#registerModalForm").modal("hide");
+          this.loginForm.reset();
+          this.sendStatusIsLoggedIn(true);
+          this.commonService.isLoggedInMessage.subscribe(message => this.isLoggedIn = message)
         }
       }, error => {
         console.log(error);
         this.openSnackBar(error.statusText);
       })
-
     } else {
       this.validationHelper.validateAllFormFields(this.loginForm);
     }
+  }
+  sendStatusIsLoggedIn(isLoggedIn) {
+    this.commonService.checkIsLoggedIn(isLoggedIn);
   }
   onResetLogin() {
     this.loginForm.reset();
@@ -73,7 +84,10 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem("userData", JSON.stringify(res.userData));
           this.router.navigate(['/profile']);
           this.openSnackBar(res.statusMessage);
-
+          $("#loginModalForm").modal("hide");
+          $("#registerModalForm").modal("hide");
+          this.registerForm.reset();
+          this.isLoggedIn = true;
         }
       }, error => {
         console.log(error);

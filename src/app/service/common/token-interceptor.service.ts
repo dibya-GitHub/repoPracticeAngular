@@ -1,16 +1,16 @@
+import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpHandler, HttpEvent, HttpRequest, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { CommonService } from './common.service';
-import { Router, ActivatedRoute } from "@angular/router";
-import { NgxUiLoaderService } from 'ngx-ui-loader';
-import { tap } from 'rxjs/operators';
-
 import {
   MatSnackBar,
   MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
+  MatSnackBarVerticalPosition
 } from '@angular/material/snack-bar';
+import { Router } from "@angular/router";
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
+import { CommonService } from './common.service';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -32,7 +32,13 @@ export class TokenInterceptorService {
     } else if (urlValue === true) {
 
     } else {
-      req = req.clone({ setHeaders: { Authorization: token } });
+      req = req.clone({
+        setHeaders: {
+          Accept: 'application/json',
+          Authorization: token
+        },
+        withCredentials: true
+      });
     }
     this.ngxService.stop();
     return req;

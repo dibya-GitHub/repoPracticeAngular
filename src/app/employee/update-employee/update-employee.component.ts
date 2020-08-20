@@ -15,7 +15,7 @@ export class UpdateEmployeeComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private employeeService: EmployeeService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params["id"];
@@ -45,6 +45,6 @@ export class UpdateEmployeeComponent implements OnInit {
   }
 
   gotoList() {
-    this.router.navigate(["/employees"]);
+    this.router.navigate(["/employee"]);
   }
 }
