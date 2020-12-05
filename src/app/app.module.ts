@@ -61,6 +61,8 @@ import { NumberDigitDirective } from './shared/directives/number-digit.directive
 import { PercentageDirective } from './shared/directives/percentage.directive';
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
 import { SignupComponent } from "./signup/signup.component";
+import { NgSelectModule } from '@ng-select/ng-select';
+import { ProductComponent } from './product/product.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -106,6 +108,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     PercentageDirective,
     MycurrencyDirective,
     AutofocusDirective,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,7 +152,8 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig)
+    NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
+    NgSelectModule
   ],
   providers: [
     {

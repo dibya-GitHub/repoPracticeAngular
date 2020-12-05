@@ -30,4 +30,19 @@ export class CommonService {
   logout(body: any) {
     return this.http.post(this.baseUrl + '/auth/user/logout', body);
   }
+  getProfileMe() {
+    return this.http.get(this.baseUrl + '/auth/user/profile/me');
+  }
+  getUserProfile() {
+    return this.http.get(this.baseUrl + '/auth/user/me');
+  }
+  updateProfile(body) {
+    return this.http.put(this.baseUrl + '/auth/user/profile/me', body);
+  }
+  countryList() {
+    return this.http.get(this.baseUrl + '/country/list');
+  }
+  zoneList(countryId) {
+    return this.http.get(this.baseUrl + '/country/' + countryId + '/state/');
+  }
 }

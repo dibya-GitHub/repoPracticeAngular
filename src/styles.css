@@ -30,7 +30,7 @@
 /*----------------------------------------*/
 /* Template default CSS
 /*----------------------------------------*/
-
+@import "~@ng-select/ng-select/themes/default.theme.css";
 html,
 body {
 	height: 100%;
@@ -1756,7 +1756,6 @@ ol {
 	font-weight: 600;
 	text-align: right;
 	margin: 0;
-	margin-top: 18px;
 }
 
 .checkout-form input[type=text] {
@@ -1764,10 +1763,9 @@ ol {
 	border: 0;
 	padding-bottom: 12px;
 	border-bottom: 2px solid #E7EBED;
-	color: #838383;
+	color: #000;
 	font-size: 12px;
 	font-weight: 500;
-	margin-bottom: 32px;
 }
 
 .checkout-form .cart-select {
@@ -2364,7 +2362,11 @@ ol {
 /* lezada-------css */
 .error-danger{
   color:#a94442;
-  font-size: 12px;
+  font-size: 11px;
+  display: none;
+}
+.container .error .error-danger{
+  display: inline;
 }
 .lezada-form.login-form {
   padding: 60px 50px;
@@ -2446,3 +2448,8 @@ ol {
 .mat-form-field{
   display: block !important;
 }
+.row.row-group{
+  margin:25px auto;
+}
+/* ng-select  start*/
+/* ng-select  End*/

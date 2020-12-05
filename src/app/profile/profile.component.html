@@ -1,84 +1,296 @@
 <section class="cart-total-page spad">
   <div class="container">
-    <form action="#" class="checkout-form">
+    <form class="checkout-form" [formGroup]="profileFrom" autocomplete="off">
       <div class="row">
         <div class="col-lg-12">
           <h3>Your Information</h3>
         </div>
         <div class="col-lg-9">
-
-          <div class="row">
+          <div class="row row-group">
             <div class="col-lg-2">
-              <p class="in-name">Name*</p>
+              <p class="in-name">Name</p>
             </div>
-            <div class="col-lg-5">
-              <mat-form-field class="example-full-width">
-                <mat-label>Email</mat-label>
-                <input matInput placeholder="Ex. pat@example.com">
-              </mat-form-field>
+            <div class="col-lg-5"
+              [ngClass]="{'error': (profileFrom.get('firstName').invalid && (profileFrom.get('firstName').dirty || profileFrom.get('firstName').touched))}">
+              <input type="text" placeholder="Enter First Name" formControlName="firstName">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('firstName').errors && profileFrom.get('firstName').errors.required)">
+                Enter First Name</p>
             </div>
-            <div class="col-lg-5">
-              <input type="text" placeholder="Last Name">
+            <div class="col-lg-5"
+              [ngClass]="{'error': (profileFrom.get('lastName').invalid && (profileFrom.get('lastName').dirty || profileFrom.get('lastName').touched))}">
+              <input type="text" placeholder="Enter Last Name" formControlName="lastName">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('lastName').errors && profileFrom.get('lastName').errors.required)">
+                Enter Last Name</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row row-group">
             <div class="col-lg-2">
-              <p class="in-name">Street Address*</p>
+              <p class="in-name">Email</p>
+            </div>
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('email').invalid && (profileFrom.get('email').dirty || profileFrom.get('email').touched))}">
+              <input type="text" placeholder="Email address" formControlName="email">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('email').errors && profileFrom.get('email').errors.required)">
+                Enter Email Id</p>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-2">
+              <p class="in-name">userName</p>
+            </div>
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('userName').invalid && (profileFrom.get('userName').dirty || profileFrom.get('userName').touched))}">
+              <input type="text" formControlName="userName" placeholder="User name">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('userName').errors && profileFrom.get('userName').errors.required)">
+                Enter userName </p>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-2">
+              <p class="in-name">Street Address</p>
+            </div>
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('address1').invalid && (profileFrom.get('address1').dirty || profileFrom.get('address1').touched))}">
+              <input type="text" formControlName="address1">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('address1').errors && profileFrom.get('address1').errors.required)">
+                Enter Address </p>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-2">
+              <p class="in-name"></p>
             </div>
             <div class="col-lg-10">
-              <input type="text">
-              <input type="text">
+              <input type="text" formControlName="address2">
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-2">
-              <p class="in-name">Country*</p>
-            </div>
-            <div class="col-lg-10">
-              <select class="cart-select country-usa">
-                <option>USA</option>
-              </select>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-lg-2">
-              <p class="in-name">City*</p>
-            </div>
-            <div class="col-lg-10">
-              <input type="text">
-            </div>
-          </div>
-          <div class="row">
+          <div class="row row-group">
             <div class="col-lg-2">
               <p class="in-name">Country</p>
             </div>
-            <div class="col-lg-10">
-              <input type="text">
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('country').invalid && (profileFrom.get('country').dirty || profileFrom.get('country').touched))}">
+              <ng-select [items]="countryList" bindLabel="name" bindValue="country_id" placeholder="Select Country"
+                formControlName="country" [clearable]="false" (change)="onChangeCountryGetState($event)">
+
+              </ng-select>
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('country').errors && profileFrom.get('country').errors.required)">Enter
+                Country </p>
             </div>
           </div>
-          <div class="row">
+          <div class="row row-group">
             <div class="col-lg-2">
-              <p class="in-name">Post Code/ZIP*</p>
+              <p class="in-name">State</p>
             </div>
-            <div class="col-lg-10">
-              <input type="text">
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('state').invalid && (profileFrom.get('state').dirty || profileFrom.get('state').touched))}">
+              <ng-select [items]="zoneList" bindLabel="name" bindValue="zone_id" placeholder="Select state"
+                formControlName="state" [clearable]="false">
+              </ng-select>
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('state').errors && profileFrom.get('state').errors.required)">Enter State
+              </p>
             </div>
           </div>
-          <div class="row">
+          <div class="row row-group">
             <div class="col-lg-2">
-              <p class="in-name">Phone*</p>
+              <p class="in-name">City</p>
             </div>
-            <div class="col-lg-10">
-              <input type="text">
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('city').invalid && (profileFrom.get('city').dirty || profileFrom.get('city').touched))}">
+              <ng-select [items]="countryList" bindLabel="description" bindValue="id" placeholder="Select city"
+                formControlName="city" [clearable]="false">
+
+              </ng-select>
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('city').errors && profileFrom.get('city').errors.required)">Enter City
+              </p>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-12 text-right">
+          <div class="row row-group">
+            <div class="col-lg-2">
+              <p class="in-name">Post Code/ZIP</p>
+            </div>
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('pinCode').invalid && (profileFrom.get('pinCode').dirty || profileFrom.get('pinCode').touched))}">
+              <input type="text" formControlName="pinCode" placeholder="Enter Post Code/Zip">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('pinCode').errors && profileFrom.get('pinCode').errors.required)">
+                Enter Post Code/Zip</p>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-2">
+              <p class="in-name">Phone</p>
+            </div>
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('mobileNo').invalid && (profileFrom.get('mobileNo').dirty || profileFrom.get('mobileNo').touched))}">
+              <input type="text" formControlName="mobileNo" placeholder="Enter Mobile Number">
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('mobileNo').errors && profileFrom.get('mobileNo').errors.required)">
+                Enter Mobile Number </p>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-2">
+              <p class="in-name">Address Type</p>
+            </div>
+            <div class="col-lg-10"
+              [ngClass]="{'error': (profileFrom.get('addType').invalid && (profileFrom.get('addType').dirty || profileFrom.get('addType').touched))}">
+              <ng-select [items]="addressTypeList" bindLabel="description" bindValue="id"
+                placeholder="Select address type" formControlName="addType" [clearable]="false">
+              </ng-select>
+              <p class="error-danger"
+                [hidden]="!(profileFrom.get('addType').errors && profileFrom.get('addType').errors.required)">Enter
+                address Type
+              </p>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-12 text-center">
               <div class="space-mb--30 col-lg-12">
-                <button class="lezada-button lezada-button--medium">
+                <button class="lezada-button lezada-button--medium" (click)="save();">
                   Save
                 </button>&nbsp;
-                <button class="lezada-button lezada-button--medium" type="reset">Reset</button>
+                <button class="lezada-button lezada-button--medium" type="reset" (click)="reset();">Reset</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-3">
+          <div class="order-table">
+            <div class="cart-item">
+              <span>Product</span>
+              <p class="product-name">Blue Dotted Shirt</p>
+            </div>
+            <div class="cart-item">
+              <span>Price</span>
+              <p>$29</p>
+            </div>
+            <div class="cart-item">
+              <span>Quantity</span>
+              <p>1</p>
+            </div>
+            <div class="cart-item">
+              <span>Shipping</span>
+              <p>$10</p>
+            </div>
+
+            <div class="cart-total">
+              <span>Total</span>
+              <p>$39</p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+    </form>
+  </div>
+</section>
+
+<!-- <section class="cart-total-page spad">
+  <div class="container">
+    <form class="checkout-form" [formGroup]="profileFrom" autocomplete="off">
+      <div class="row row-group">
+        <div class="col-lg-12">
+          <h3>Your Information</h3>
+        </div>
+        <div class="col-lg-9">
+          <div class="row row-group">
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Enter First name" formControlName="firstName">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Enter Last name" formControlName="lastName">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Enter Email" formControlName="email">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Enter Username" formControlName="userName">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-6">
+              <mat-form-field appearance="fill">
+                <mat-label>Country</mat-label>
+                <mat-select formControlName="country">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor="let country of countries" [value]="country.id">{{country.description}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>State</mat-label>
+                <input matInput placeholder="Enter State" formControlName="state">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Pin Code</mat-label>
+                <input matInput placeholder="Enter Pin Code" formControlName="pinCode">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Address 1</mat-label>
+                <input matInput placeholder="Enter Address 1" formControlName="address1">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Address 2</mat-label>
+                <input matInput placeholder="Enter Address 2" formControlName="address2">
+              </mat-form-field>
+            </div>
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>LandMark</mat-label>
+                <input matInput placeholder="Enter LandMark" formControlName="landMark">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-6">
+              <mat-form-field class="example-full-width">
+                <mat-label>Address Type</mat-label>
+                <input matInput placeholder="Enter Address Type" formControlName="addType">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row row-group">
+            <div class="col-lg-12 text-right">
+              <div class="space-mb--30 col-lg-12">
+                <button class="lezada-button lezada-button--medium" (click)="save();">
+                  Save
+                </button>&nbsp;
+                <button class="lezada-button lezada-button--medium" type="reset" (click)="reset();">Reset</button>
               </div>
             </div>
           </div>
@@ -86,4 +298,4 @@
       </div>
     </form>
   </div>
-</section>
+</section> -->

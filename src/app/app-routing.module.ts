@@ -8,11 +8,15 @@ import { LoginComponent } from "./login/login.component";
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from "./signup/signup.component";
 import { AuthGuard } from './service/common/auth.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "/" },
   { path: "login", pathMatch: "full", component: LoginComponent },
   { path: "signup", pathMatch: "full", component: SignupComponent },
+  { path: "dashboard", pathMatch: "full", component: DashboardComponent },
+  { path: "product", pathMatch: "full", component: ProductComponent },
   { path: "profile", pathMatch: "full", component: ProfileComponent, canActivate: [AuthGuard] },
   {
     path: "employee",
