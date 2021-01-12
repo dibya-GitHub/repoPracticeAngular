@@ -62,6 +62,9 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ErrorMaintainanceComponent } from './components/error-maintainance/error-maintainance.component';
 import { Error404Component } from './components/error404/error404.component';
 import { Error500Component } from './components/error500/error500.component';
+import { ProfileAccountComponent } from './components/profile-account/profile-account.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ActivityComponent } from './components/activity/activity.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -106,7 +109,10 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ForgotPasswordComponent,
     ErrorMaintainanceComponent,
     Error404Component,
-    Error500Component
+    Error500Component,
+    ProfileAccountComponent,
+    DashboardComponent,
+    ActivityComponent
 
   ],
   imports: [

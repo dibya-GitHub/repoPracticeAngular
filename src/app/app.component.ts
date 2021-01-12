@@ -9,7 +9,7 @@ import { AuthService } from './service/common/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'elearnweb';
+  title = 'Equally';
   isLoggedIn: Boolean;
 
   constructor(
