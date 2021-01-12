@@ -43,15 +43,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgxUiLoaderConfig, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { CreateEmployeeComponent } from "./employee/create-employee/create-employee.component";
-import { EmployeeDetailsComponent } from "./employee/employee-details/employee-details.component";
-import { EmployeeListComponent } from "./employee/employee-list/employee-list.component";
-import { UpdateEmployeeComponent } from "./employee/update-employee/update-employee.component";
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
-import { LoginComponent } from "./login/login.component";
-import { ProfileComponent } from './profile/profile.component';
+import { FooterComponent } from './shared/component/footer/footer.component';
+import { HeaderComponent } from './shared/component/header/header.component';
 import { CommonService } from './service/common/common.service';
 import { TokenInterceptorService } from './service/common/token-interceptor.service';
 import { AutofocusDirective } from './shared/directives/autofocus.directive';
@@ -60,9 +53,15 @@ import { NoDecimalDirective } from './shared/directives/no-decimal.directive';
 import { NumberDigitDirective } from './shared/directives/number-digit.directive';
 import { PercentageDirective } from './shared/directives/percentage.directive';
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
-import { SignupComponent } from "./signup/signup.component";
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ProductComponent } from './product/product.component';
+import { NumberonlyDirective } from "./shared/directives/number-only.directive";
+import { BlockCopyPasteDirective } from "./shared/directives/block-copy-paste.directive";
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { ErrorMaintainanceComponent } from './components/error-maintainance/error-maintainance.component';
+import { Error404Component } from './components/error404/error404.component';
+import { Error500Component } from './components/error500/error500.component';
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   bgsColor: "red",
@@ -93,22 +92,22 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent,
-    DashboardComponent,
-    SignupComponent,
-    EmployeeListComponent,
-    CreateEmployeeComponent,
-    EmployeeDetailsComponent,
-    UpdateEmployeeComponent,
     FooterComponent,
     HeaderComponent,
-    ProfileComponent,
     NumberDigitDirective,
     NoDecimalDirective,
     PercentageDirective,
     MycurrencyDirective,
     AutofocusDirective,
-    ProductComponent,
+    NumberonlyDirective,
+    BlockCopyPasteDirective,
+    SigninComponent,
+    SignupComponent,
+    ForgotPasswordComponent,
+    ErrorMaintainanceComponent,
+    Error404Component,
+    Error500Component
+
   ],
   imports: [
     BrowserModule,

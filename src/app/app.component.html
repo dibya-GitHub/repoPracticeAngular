@@ -1,9 +1,8 @@
 <div ngxUiLoaderBlurred>
-  <app-login></app-login>
-  <app-header></app-header>
+  <app-header *ngIf="removeCommon()"></app-header>
   <div class="route-container">
     <router-outlet></router-outlet>
   </div>
-  <app-footer></app-footer>
+  <app-footer *ngIf="removeCommon()"></app-footer>
 </div>
 <ngx-ui-loader></ngx-ui-loader>

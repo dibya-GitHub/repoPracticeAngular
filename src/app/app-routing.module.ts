@@ -1,37 +1,44 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { CreateEmployeeComponent } from "./employee/create-employee/create-employee.component";
-import { EmployeeDetailsComponent } from "./employee/employee-details/employee-details.component";
-import { EmployeeListComponent } from "./employee/employee-list/employee-list.component";
-import { UpdateEmployeeComponent } from "./employee/update-employee/update-employee.component";
-import { LoginComponent } from "./login/login.component";
-import { ProfileComponent } from './profile/profile.component';
-import { SignupComponent } from "./signup/signup.component";
-import { AuthGuard } from './service/common/auth.guard';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProductComponent } from './product/product.component';
+import { ErrorMaintainanceComponent } from "./components/error-maintainance/error-maintainance.component";
+import { Error404Component } from "./components/error404/error404.component";
+import { Error500Component } from "./components/error500/error500.component";
+import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { SigninComponent } from "./components/signin/signin.component";
+import { SignupComponent } from "./components/signup/signup.component";
 
 const routes: Routes = [
   { path: "", pathMatch: "full", redirectTo: "/" },
-  { path: "login", pathMatch: "full", component: LoginComponent },
-  { path: "signup", pathMatch: "full", component: SignupComponent },
-  { path: "dashboard", pathMatch: "full", component: DashboardComponent },
-  { path: "product", pathMatch: "full", component: ProductComponent },
-  { path: "profile", pathMatch: "full", component: ProfileComponent, canActivate: [AuthGuard] },
   {
-    path: "employee",
+    path: "sign-in",
     pathMatch: "full",
-    component: EmployeeListComponent,
-    canActivate: [AuthGuard]
+    component: SigninComponent,
   },
   {
-    path: "employee/add",
+    path: "sign-up",
     pathMatch: "full",
-    component: CreateEmployeeComponent,
-    canActivate: [AuthGuard]
+    component: SignupComponent,
   },
-  { path: "update/:id", component: UpdateEmployeeComponent, canActivate: [AuthGuard] },
-  { path: "details/:id", component: EmployeeDetailsComponent, canActivate: [AuthGuard] },
+  {
+    path: "forgot-password",
+    pathMatch: "full",
+    component: ForgotPasswordComponent,
+  },
+  {
+    path: "error-maintainance",
+    pathMatch: "full",
+    component: ErrorMaintainanceComponent,
+  },
+  {
+    path: "error404",
+    pathMatch: "full",
+    component: Error404Component,
+  },
+  {
+    path: "error500",
+    pathMatch: "full",
+    component: Error500Component,
+  }
 ];
 
 @NgModule({
