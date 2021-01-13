@@ -58,18 +58,18 @@
         <div class="container-xl">
           <ul class="navbar-nav">
             <li class="nav-item active">
-              <a class="nav-link" href="./index.html">
-                <span class="nav-link-icon d-md-none d-lg-inline-block"><svg xmlns="http://www.w3.org/2000/svg"
-                    class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                    fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <polyline points="5 12 3 12 12 3 21 12 19 12"></polyline>
-                    <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                    <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6"></path>
-                  </svg>
-                </span>
+              <a class="nav-link" routerLink="/">
+                <i class="fa fa-home" aria-hidden="true"></i>&nbsp;
                 <span class="nav-link-title">
                   Home
+                </span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="groups">
+                <i class="fa fa-users" aria-hidden="true"></i>&nbsp;
+                <span class="nav-link-title">
+                  Groups
                 </span>
               </a>
             </li>
@@ -93,54 +93,5 @@
       </div>
     </div>
   </div>
-
   <router-outlet></router-outlet>
 </div>
-
-
-
-<!-- <header class="header-section">
-  <div class="container-fluid">
-    <div class="inner-header">
-      <div class="logo">
-        <a routerLink="/"><img src="../../assets/images/logo.png" alt="" width="170" height="58"></a>
-      </div>
-      <div class="header-right">
-        <img src="../../assets/images/search.png" alt="" class="search-trigger">
-        <img src="img/icons/man.png" alt="">
-        <a href="#">
-          <img src="../../assets/images/bag.png" alt="">
-          <span>2</span>
-        </a>
-      </div>
-      <div class="user-access" *ngIf="!isLoggedIn;else logOut">
-        <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Register /
-        </a>
-        <a data-toggle="modal" data-target="#registerModalForm">Register / </a>
-        <a data-toggle="modal" data-target="#loginModalForm">&nbsp;Login</a>
-      </div>
-      <ng-template #logOut>
-        <div class="user-access">
-          <a (click)="signOut()" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"> &nbsp;Logout
-          </a>
-        </div>
-      </ng-template>
-      <nav class="main-menu mobile-menu">
-        <ul>
-          <li><a routerLink="/dashboard">Home</a></li>
-          <li><a href="./categories.html">Shop</a>
-            <ul class="sub-menu">
-              <li><a href="/product">Product Page</a>
-              </li>
-              <li><a href="shopping-cart.html">Shopping Card</a></li>
-              <li><a href="check-out.html">Check out</a></li>
-            </ul>
-          </li>
-          <li><a href="./product-page.html">About</a></li>
-          <li><a href="./check-out.html">Blog</a></li>
-          <li><a routerLink="/profile">Profile</a></li>
-        </ul>
-      </nav>
-    </div>
-  </div>
-</header> -->

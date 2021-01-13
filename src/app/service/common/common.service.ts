@@ -45,4 +45,16 @@ export class CommonService {
   zoneList(countryId) {
     return this.http.get(this.baseUrl + '/country/' + countryId + '/state/');
   }
+  currencyList() {
+    return this.http.get(this.baseUrl + '/currency/list');
+  }
+  getCurrentUser() {
+    return this.http.get(this.baseUrl + '/user/get_current_user');
+  }
+  fetchAllGroups() {
+    return this.http.get(this.baseUrl + '/groups/get_group');
+  }
+  fetchGroupType() {
+    return this.http.get(this.baseUrl + '/groups/get_group_type');
+  }
 }

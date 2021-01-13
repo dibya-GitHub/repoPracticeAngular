@@ -1,12 +1,97 @@
 <div class="content">
   <div class="container-xl">
-    <!-- Page title -->
     <div class="page-header d-print-none">
       <div class="row align-items-center">
         <div class="col">
           <h2 class="page-title">
             Profile
           </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row row-cards">
+      <div class="col-lg-4">
+        <div class="card">
+          <div class="card-body p-4 text-center">
+            <span class="avatar avatar-xl mb-3 avatar-rounded"
+              style="background-image: url(../../../assets/static/avatars/000m.jpg)"></span>
+            <h3 class="m-0 mb-1"><a href="#">{{currentUser?.name}}</a></h3>
+            <div class="text-muted">{{currentUser?.profession}}</div>
+            <div class="mt-3">
+              <span class="badge bg-purple-lt">Owner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card card-lg">
+          <div class="card-body">
+            <div class="card-body">
+              <form [formGroup]="profileForm">
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Name</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Enter Name" formControlName="name">
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Nick Name</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Enter Nick Name" formControlName="nickname">
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Email address</label>
+                  <div class="col">
+                    <input type="email" class="form-control" placeholder="Enter email" formControlName="email">
+                    <small class="form-hint">We'll never share your email with anyone else.</small>
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Password</label>
+                  <div class="col">
+                    <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                    <small class="form-hint">
+                      Your password must be 8-20 characters long, contain letters and numbers, and must not contain
+                      spaces, special characters, or emoji.
+                    </small>
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Mobile Number</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Enter Mobile Number" formControlName="mobile">
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Default Currency</label>
+                  <div class="col">
+                    <select class="form-select" formControlName="default_currency">
+                      <option [value]="null">Select</option>
+                      <option *ngFor="let item of currencyList" [value]="item.currency_code">{{item.currency_code}}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <label class="form-label col-3 col-form-label">Profession</label>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Enter Profession" formControlName="profession">
+                  </div>
+                </div>
+                <div class="form-group mb-3 row">
+                  <div class="form-label col-3 col-form-label">Choose Avatar</div>
+                  <div class="col">
+                    <input type="file" class="form-control" formControlName="avatar">
+                  </div>
+                </div>
+                <div class="form-footer">
+                  <button type="submit" class="btn btn-primary" (click)="onSubmit();">Submit</button>&nbsp;
+                  <button class="btn btn-red" (click)="onCancel();">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </div>

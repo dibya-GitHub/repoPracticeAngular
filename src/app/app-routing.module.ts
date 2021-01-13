@@ -6,6 +6,7 @@ import { ErrorMaintainanceComponent } from "./components/error-maintainance/erro
 import { Error404Component } from "./components/error404/error404.component";
 import { Error500Component } from "./components/error500/error500.component";
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { GroupsComponent } from "./components/groups/groups.component";
 import { ProfileAccountComponent } from "./components/profile-account/profile-account.component";
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
@@ -61,7 +62,11 @@ const routes: Routes = [
     pathMatch: "full",
     component: ActivityComponent,
   },
-
+  {
+    path: "groups",
+    pathMatch: "full",
+    component: GroupsComponent,
+  },
 ];
 
 @NgModule({

@@ -1,10 +1,5 @@
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition
-} from '@angular/material/snack-bar';
 import { Router } from "@angular/router";
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
@@ -15,12 +10,9 @@ import { CommonService } from './common.service';
   providedIn: 'root'
 })
 export class TokenInterceptorService {
-  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
 
   constructor(
     private commonService: CommonService,
-    private _snackBar: MatSnackBar,
     private router: Router,
     private ngxService: NgxUiLoaderService
   ) { }
@@ -56,12 +48,5 @@ export class TokenInterceptorService {
 
         }
       }));
-  }
-  openSnackBar(msg) {
-    this._snackBar.open(msg, 'End now', {
-      duration: 5000,
-      horizontalPosition: this.horizontalPosition,
-      verticalPosition: this.verticalPosition,
-    });
   }
 }
