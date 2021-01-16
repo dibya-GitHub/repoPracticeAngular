@@ -1,8 +1,8 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { AuthService } from './service/common/auth.service';
+import { CommonService } from './service/common/common.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,16 +11,18 @@ import { AuthService } from './service/common/auth.service';
 export class AppComponent {
   title = 'Equally';
   isLoggedIn: Boolean;
+  currentUser: any;
 
   constructor(
-    private ngxService: NgxUiLoaderService,
     private route: Router,
     private auth: AuthService,
-    public location: Location
+    public location: Location,
+    private commonService: CommonService,
   ) {
 
   }
   ngOnInit() {
+
   }
   removeCommon() {
     var titlee = this.location.prepareExternalUrl(this.location.path());

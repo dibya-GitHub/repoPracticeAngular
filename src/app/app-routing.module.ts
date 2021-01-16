@@ -6,6 +6,7 @@ import { ErrorMaintainanceComponent } from "./components/error-maintainance/erro
 import { Error404Component } from "./components/error404/error404.component";
 import { Error500Component } from "./components/error500/error500.component";
 import { ForgotPasswordComponent } from "./components/forgot-password/forgot-password.component";
+import { GroupInfoComponent } from "./components/group-info/group-info.component";
 import { GroupsComponent } from "./components/groups/groups.component";
 import { ProfileAccountComponent } from "./components/profile-account/profile-account.component";
 import { SigninComponent } from "./components/signin/signin.component";
@@ -66,6 +67,11 @@ const routes: Routes = [
     path: "groups",
     pathMatch: "full",
     component: GroupsComponent,
+  },
+  {
+    path: "group-info",
+    pathMatch: "full",
+    component: GroupInfoComponent,
   },
 ];
 

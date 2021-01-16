@@ -1,7 +1,6 @@
 import { HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
-import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CommonService } from './common.service';
@@ -13,8 +12,7 @@ export class TokenInterceptorService {
 
   constructor(
     private commonService: CommonService,
-    private router: Router,
-    private ngxService: NgxUiLoaderService
+    private router: Router
   ) { }
   addToken(req: HttpRequest<any>, token: string): HttpRequest<any> {
     const urlValue = (req.url.indexOf("login") > -1 || req.url.indexOf("signup") > -1);
@@ -32,14 +30,12 @@ export class TokenInterceptorService {
         withCredentials: true
       });
     }
-    this.ngxService.stop();
     return req;
   }
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this.ngxService.start();
+
     let authToken = this.commonService.getAuthToken();
     let authReq = req;
-
     return next.handle(this.addToken(authReq, authToken))
       .pipe(tap((event: HttpEvent<any>) => {
       }, (err: any) => {

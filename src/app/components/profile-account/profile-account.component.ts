@@ -41,10 +41,11 @@ export class ProfileAccountComponent implements OnInit {
       this.currencyList = result.currency;
     })
   }
+
   getCurrentUser() {
     this.commonService.getCurrentUser().subscribe((result: any) => {
-      if (result.user) {
-        this.currentUser = result.user;
+      if (result) {
+        this.currentUser = result;
         this.profileForm.patchValue(this.currentUser)
       }
     })

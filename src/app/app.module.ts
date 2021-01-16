@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NgSelectModule } from '@ng-select/ng-select';
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ActivityComponent } from './components/activity/activity.component';
@@ -24,17 +23,16 @@ import { AutofocusDirective } from './shared/directives/autofocus.directive';
 import { BlockCopyPasteDirective } from "./shared/directives/block-copy-paste.directive";
 import { MycurrencyDirective } from './shared/directives/mycurrency.directive';
 import { NoDecimalDirective } from './shared/directives/no-decimal.directive';
-import { NumberDigitDirective } from './shared/directives/number-digit.directive';
 import { NumberonlyDirective } from "./shared/directives/number-only.directive";
 import { PercentageDirective } from './shared/directives/percentage.directive';
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { GroupInfoComponent } from './components/group-info/group-info.component';
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    NumberDigitDirective,
     NoDecimalDirective,
     PercentageDirective,
     MycurrencyDirective,
@@ -50,7 +48,8 @@ import { ValidationHelperService } from "./shared/services/validate-helper.servi
     ProfileAccountComponent,
     DashboardComponent,
     ActivityComponent,
-    GroupsComponent
+    GroupsComponent,
+    GroupInfoComponent
 
   ],
   imports: [
@@ -60,7 +59,7 @@ import { ValidationHelperService } from "./shared/services/validate-helper.servi
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    NgSelectModule
+    MatProgressSpinnerModule
   ],
   providers: [
     // {

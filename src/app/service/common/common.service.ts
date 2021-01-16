@@ -51,10 +51,31 @@ export class CommonService {
   getCurrentUser() {
     return this.http.get(this.baseUrl + '/user/get_current_user');
   }
+  getCurrentUserId() {
+    return this.http.get(this.baseUrl + '/user/get_current_user_id');
+  }
   fetchAllGroups() {
     return this.http.get(this.baseUrl + '/groups/get_group');
   }
   fetchGroupType() {
-    return this.http.get(this.baseUrl + '/groups/get_group_type');
+    return this.http.get(this.baseUrl + '/group/get_group_type');
+  }
+  createGroup(formData) {
+    return this.http.post(this.baseUrl + '/groups/create_group', formData);
+  }
+  editGroup(formData) {
+    return this.http.put(this.baseUrl + '/groups/edit_group', formData);
+  }
+  getGroupInfoById(id) {
+    return this.http.post(this.baseUrl + '/groups/get_groupby_id', id);
+  }
+  deleteGroupById(id) {
+    return this.http.delete(this.baseUrl + '/groups/' + id)
+  }
+  getExpenseDetailsByGroupId(id) {
+    return this.http.post(this.baseUrl + '/expense/get_expenses', id);
+  }
+  getTodaysExpense(id) {
+    return this.http.post(this.baseUrl + '/expense/get_expenses/today', id);
   }
 }
