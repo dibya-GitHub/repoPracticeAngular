@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/service/common/common.service';
 import { Utils } from 'src/app/shared/utils/utils';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-group-info',
@@ -11,6 +12,7 @@ import { Utils } from 'src/app/shared/utils/utils';
 })
 export class GroupInfoComponent implements OnInit {
   groupForm: FormGroup;
+  expensesForm: FormGroup;
   groupName: any;
   groupId: any;
   expenses: any;
@@ -21,7 +23,10 @@ export class GroupInfoComponent implements OnInit {
   userId: any;
   groupTypeList: any;
   groupType: any;
-
+  currencyCode: any;
+  expenseId: any;
+  nowDate: any = moment(new Date()).format('YYYY-MM-DD');
+  comments: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -35,17 +40,18 @@ export class GroupInfoComponent implements OnInit {
       this.groupName = params['group_name'];
       this.groupId = params['id'];
       this.groupType = params['group_type'];
+      this.currencyCode = params['currency_code'];
 
       this.getTodaysExpense(this.groupId);
       this.getExpenseDetailsByGroupId(this.groupId);
       this.createGroup();
-      console.log(params);
-      console.log(this.groupName);
+      this.createExpenses(this.groupId)
       this.getUserId();
       this.fetchGroupType();
     });
   }
   createGroup() {
+
     this.groupForm = this.fb.group({
       group_name: [undefined],
       group_type: [undefined],
@@ -57,6 +63,26 @@ export class GroupInfoComponent implements OnInit {
       updated_at: [undefined]
     })
   }
+  createExpenses(groupId?: any) {
+    this.expensesForm = this.fb.group({
+      expense_description: [undefined],
+      group_id: groupId,
+      price: [undefined],
+      currency_code: [undefined],
+      created_at: [undefined],
+      created_by: [undefined],
+      updated_at: [undefined],
+      updated_by: [undefined],
+    })
+    this.expensesForm.patchValue({
+      created_at: this.nowDate
+    })
+  }
+  // resetForm() {
+  //   this.expensesForm.reset({
+  //     created_at: this.nowDate
+  //   })
+  // }
   getUserId() {
     this.commonService.getCurrentUserId().subscribe((result: any) => {
       if (result.id) {
@@ -75,7 +101,6 @@ export class GroupInfoComponent implements OnInit {
   getTodaysExpense(groupId) {
     if (groupId) {
       this.commonService.getTodaysExpense({ id: groupId }).subscribe((res: any) => {
-        console.log(res);
         if (res.statusCode == 200) {
           this.todayExpenses = res.result;
           if (this.todayExpenses.length == 0) {
@@ -88,7 +113,6 @@ export class GroupInfoComponent implements OnInit {
   getExpenseDetailsByGroupId(groupId) {
     if (groupId) {
       this.commonService.getExpenseDetailsByGroupId({ id: groupId }).subscribe((res: any) => {
-        console.log(res);
         if (res.statusCode == 200) {
           this.expenses = res.result;
           if (this.expenses.length == 0) {
@@ -101,14 +125,13 @@ export class GroupInfoComponent implements OnInit {
   deleteGroup(groupId) {
     if (groupId) {
       this.commonService.deleteGroupById(groupId).subscribe((result: any) => {
-        console.log(result);
         if (result.statusCode == 200) {
           this.router.navigate(['groups']);
         }
       })
     }
   }
-  onSubmit() {
+  onSubmitGroup() {
     if (this.groupForm.valid) {
       // this.isLoading = true;
       let formData = this.groupForm.getRawValue();
@@ -119,7 +142,7 @@ export class GroupInfoComponent implements OnInit {
       console.log(formData);
       this.commonService.editGroup(formData).subscribe((result: any) => {
         if (result.statusCode) {
-          console.log(result.statusText);
+          this.router.navigate(['groups']);
           // this.fetchAllGroups();
           // this.isLoading = false;
 
@@ -129,5 +152,74 @@ export class GroupInfoComponent implements OnInit {
       // this.isLoading = false;
       Utils.validateAllFormFields(this.groupForm);
     }
+  }
+  onSubmitExpense() {
+    if (this.expensesForm.valid) {
+      // this.isLoading = true;
+      let formData = this.expensesForm.getRawValue();
+      formData.currency_code = this.currencyCode;
+      // formData.created_at = new Date();
+      formData.created_by = this.userId.user_name;
+      formData.updated_at = new Date();
+      formData.updated_by = this.userId.user_name;
+      console.log(formData);
+      this.commonService.createExpense(formData).subscribe((result: any) => {
+        if (result.statusCode) {
+          this.router.navigate(['groups']);
+        }
+      })
+    } else {
+      // this.isLoading = false;
+      Utils.validateAllFormFields(this.expensesForm);
+    }
+  }
+
+  onEditExpense() {
+    if (this.expensesForm.valid) {
+      // this.isLoading = true;
+      let formData = this.expensesForm.getRawValue();
+      formData.currency_code = this.currencyCode;
+      // formData.created_at = new Date();
+      // formData.created_by = this.userId.user_name;
+      formData.updated_at = new Date();
+      formData.updated_by = this.userId.user_name;
+      formData._id = this.expenseId;
+      console.log(formData);
+      this.commonService.editExpense(formData).subscribe((result: any) => {
+        if (result.statusCode == 200) {
+          window.location.reload();
+        }
+      })
+    } else {
+      // this.isLoading = false;
+      Utils.validateAllFormFields(this.expensesForm);
+    }
+  }
+  onDeleteExpense() {
+    let obj = {
+      id: this.expenseId,
+    }
+    if (obj) {
+      this.commonService.deleteExpense(obj).subscribe((result: any) => {
+        if (result.statusCode == 200) {
+          window.location.reload();
+        }
+      })
+    }
+  }
+  onClickEachExpense(expense) {
+    console.log(expense);
+    this.expenseId = expense._id;
+    this.expensesForm.patchValue(expense);
+    let createdDate = moment(expense.created_at).format('YYYY-MM-DD');
+    this.expensesForm.get('created_at').setValue(createdDate);
+    this.getCommentsByExpId(expense._id);
+  }
+  getCommentsByExpId(expense: any) {
+    this.commonService.getCommentsbyExpId(expense).subscribe((result: any) => {
+      if (result.statusCode == 200) {
+        this.comments = result.comments;
+      }
+    })
   }
 }

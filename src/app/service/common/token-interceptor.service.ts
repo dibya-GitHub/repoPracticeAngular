@@ -40,7 +40,6 @@ export class TokenInterceptorService {
       .pipe(tap((event: HttpEvent<any>) => {
       }, (err: any) => {
         if (err.status === 500) {
-          console.log("Error--", err);
 
         }
       }));

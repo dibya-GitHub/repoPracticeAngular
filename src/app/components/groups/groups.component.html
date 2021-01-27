@@ -23,9 +23,12 @@
         <div class="card card-md">
           <div class="card-body text-center">
             <div class="text-uppercase text-muted font-weight-medium">{{item.group_name}}</div>
-            <div class="display-5 my-3">$0</div>
+            <div class="display-5 my-3">
+              <i class="fa fa-inr" aria-hidden="true"></i>
+              {{item.sum}}
+            </div>
             <ul class="list-unstyled lh-lg">
-              <li><strong>3</strong> Users</li>
+              <li><strong>{{item.count}}</strong> Expenses</li>
               <li>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon me-1 text-success" width="24" height="24"
                   viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"

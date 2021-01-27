@@ -15,7 +15,6 @@ export class PercentageDirective {
   }
   @HostListener('keydown', ['$event'])
   onKeyDown(event: KeyboardEvent) {
-    console.log(document);
     if (this.specialKeys.indexOf(event.key) !== -1) {
       return;
     }

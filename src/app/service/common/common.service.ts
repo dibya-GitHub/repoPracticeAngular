@@ -7,7 +7,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonService {
-  baseUrl = environment.baseUrl;
+  baseUrl: any = environment.baseUrl;
   private messageSource = new BehaviorSubject(false);
   isLoggedInMessage = this.messageSource.asObservable();
 
@@ -77,5 +77,23 @@ export class CommonService {
   }
   getTodaysExpense(id) {
     return this.http.post(this.baseUrl + '/expense/get_expenses/today', id);
+  }
+  createExpense(formData) {
+    return this.http.post(this.baseUrl + '/expense/create_expense', formData);
+  }
+  editExpense(formData) {
+    return this.http.put(this.baseUrl + '/expense/edit_expense', formData);
+  }
+  deleteExpense(formData) {
+    return this.http.delete(this.baseUrl + '/expense/delete_expense/' + formData.id);
+  }
+  getSumExpense(groupId) {
+    return this.http.post(this.baseUrl + '/expense/get_sum_expense', groupId);
+  }
+  createComment(formData) {
+    return this.http.post(this.baseUrl + '/comments/create_comment', formData);
+  }
+  getCommentsbyExpId(expense_id) {
+    return this.http.get(this.baseUrl + '/comments/get_all_comments/' + expense_id);
   }
 }

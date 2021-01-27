@@ -30,7 +30,6 @@ export class GroupsComponent implements OnInit {
     this.fetchGroupType();
   }
   createGroup() {
-    console.log(this.userId);
 
     this.groupForm = this.fb.group({
       group_name: [undefined],
@@ -40,7 +39,7 @@ export class GroupsComponent implements OnInit {
       created_by: [undefined],
       created_at: [undefined],
       updated_by: [undefined],
-      updated_at: [undefined]
+      updated_at: [undefined],
     })
   }
   getUserId() {
@@ -61,10 +60,8 @@ export class GroupsComponent implements OnInit {
       formData.created_by = this.userId.user_name;
       formData.updated_at = new Date();
       formData.updated_by = this.userId.user_name;
-      console.log(formData);
       this.commonService.createGroup(formData).subscribe((result: any) => {
         if (result.statusCode) {
-          console.log(result.statusText);
           this.fetchAllGroups();
           this.isLoading = false;
 
@@ -87,19 +84,42 @@ export class GroupsComponent implements OnInit {
     this.commonService.fetchAllGroups().subscribe((result: any) => {
       this.groupList = result;
       if (this.groupList.length > 0) {
+        this.groupList.forEach(element => {
+          element.sum = 0;
+          element.count = 0;
+          this.getGroupExpense({ id: element._id });
+        });
+
         this.empty = false;
       } else {
         this.empty = true;
       }
     })
   }
+  getGroupExpense(groupId) {
+    var arr = [];
+    var sumObj;
+    this.commonService.getSumExpense(groupId).subscribe((result: any) => {
+      sumObj = { sum: result.result, count: result.count };
+      arr.push(sumObj);
+    })
+    console.log(arr);
+    // if (this.sumObj) {
+    //   this.groupList.forEach((value, idx) => {
+    //     value.sum = this.sumObj.sum;
+    //     value.count = this.sumObj.count;
+    //   });
+    // }
+
+    // console.log(this.groupList);
+
+  }
   chooseGroup(id) {
     let itemId = { "id": id }
     if (itemId != undefined) {
       this.commonService.getGroupInfoById(itemId).subscribe((result: any) => {
-        console.log(result);
         if (result) {
-          this.router.navigate(['group-info'], { queryParams: { id: result._id, group_name: result.group_name, group_type: result.group_type }, skipLocationChange: true })
+          this.router.navigate(['group-info'], { queryParams: { id: result._id, group_name: result.group_name, group_type: result.group_type, currency_code: 'INR' }, skipLocationChange: false })
         }
       })
     }

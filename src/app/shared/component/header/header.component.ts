@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
   constructor(private route: Router, private auth: AuthService, private commonService: CommonService) { }
 
   ngOnInit() {
-    console.log(sessionStorage.getItem('isLoggedIn'));
     this.commonService.isLoggedInMessage.subscribe(message => this.isLoggedIn = message);
   }
   signOut() {

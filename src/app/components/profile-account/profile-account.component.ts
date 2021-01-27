@@ -53,7 +53,6 @@ export class ProfileAccountComponent implements OnInit {
   onSubmit() {
     if (this.profileForm.valid) {
       let values = this.profileForm.value;
-      console.log(values);
 
     } else {
       Utils.validateAllFormFields(this.profileForm);
