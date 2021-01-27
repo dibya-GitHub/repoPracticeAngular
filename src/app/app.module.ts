@@ -28,6 +28,7 @@ import { PercentageDirective } from './shared/directives/percentage.directive';
 import { ValidationHelperService } from "./shared/services/validate-helper.service";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GroupInfoComponent } from './components/group-info/group-info.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +50,8 @@ import { GroupInfoComponent } from './components/group-info/group-info.component
     DashboardComponent,
     ActivityComponent,
     GroupsComponent,
-    GroupInfoComponent
+    GroupInfoComponent,
+    NavigationComponent
 
   ],
   imports: [

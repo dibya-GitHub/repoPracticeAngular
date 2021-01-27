@@ -2452,3 +2452,10 @@ ol {
 }
 /* ng-select  start*/
 /* ng-select  End*/
+
+
+/* custom css */
+
+a:hover, a:focus{
+  color: #206bc4;
+}

@@ -25,9 +25,9 @@ export class AppComponent {
 
   }
   removeCommon() {
-    var titlee = this.location.prepareExternalUrl(this.location.path());
-    titlee = titlee.slice(1);
-    if (titlee === 'sign-in' || titlee === 'sign-up' || titlee === 'forgot-password' || titlee === 'error-maintainance' || titlee === 'error404' || titlee === 'error500') {
+    let routerLink = this.location.prepareExternalUrl(this.location.path());
+    routerLink = routerLink.slice(1);
+    if (routerLink === '/sign-in' || routerLink === '/sign-up' || routerLink === '/forgot-password' || routerLink === '/error-maintainance' || routerLink === '/error404' || routerLink === '/error500') {
       return false;
     }
     else {
