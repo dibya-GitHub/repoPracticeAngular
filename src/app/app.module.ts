@@ -29,6 +29,8 @@ import { ValidationHelperService } from "./shared/services/validate-helper.servi
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GroupInfoComponent } from './components/group-info/group-info.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
+import { NgxLoadingModule } from 'ngx-loading';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,14 +63,19 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    NgxLoadingModule,
+		ToastrModule.forRoot({
+		timeOut: 5000,
+		positionClass: 'toast-top-right'
+		}),
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS,
-    //   useClass: TokenInterceptorService,
-    //   multi: true
-    // },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true
+    },
     ValidationHelperService,
     CommonService
   ],

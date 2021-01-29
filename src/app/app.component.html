@@ -6,3 +6,6 @@
   </div>
   <app-footer *ngIf="removeCommon()"></app-footer>
 </div>
+
+<ngx-loading [show]="loaderService.isBusy" [config]="{animationType: ngxLoadingAnimationTypes.circle,
+  primaryColour: primaryColour, backdropBorderRadius: '3px'}"></ngx-loading>

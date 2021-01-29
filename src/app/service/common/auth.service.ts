@@ -11,9 +11,8 @@ export class AuthService {
       this.isLoggedIn = true;
     }
   }
-  setLoginInfo(token: any) {
-    sessionStorage.setItem('token', token);
-    sessionStorage.setItem('isLoggedIn', "true");
+  setLoginInfo(data: any) {
+    sessionStorage.setItem('token', data.token);
   }
   getAuthToken() {
     const authToken = sessionStorage.getItem('token');

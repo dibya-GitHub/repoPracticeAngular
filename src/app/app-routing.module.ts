@@ -11,17 +11,19 @@ import { GroupsComponent } from "./components/groups/groups.component";
 import { ProfileAccountComponent } from "./components/profile-account/profile-account.component";
 import { SigninComponent } from "./components/signin/signin.component";
 import { SignupComponent } from "./components/signup/signup.component";
+import { AuthGuard } from "./service/common/auth.guard";
 
 const routes: Routes = [
   {
     path: "",
     pathMatch: "full",
-    redirectTo: "/dashboard"
+    redirectTo: "/dashboard",
   },
   {
     path: "dashboard",
     pathMatch: "full",
     component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "sign-in",
@@ -57,21 +59,25 @@ const routes: Routes = [
     path: "profile",
     pathMatch: "full",
     component: ProfileAccountComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "activity",
     pathMatch: "full",
     component: ActivityComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "groups",
     pathMatch: "full",
     component: GroupsComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: "group-info",
     pathMatch: "full",
     component: GroupInfoComponent,
+    canActivate: [AuthGuard],
   },
 ];
 
@@ -79,4 +85,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
