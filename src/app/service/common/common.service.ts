@@ -52,14 +52,17 @@ export class CommonService {
   currencyList() {
     return this.http.get(this.baseUrl + "/currency/list");
   }
-  getCurrentUser() {
-    return this.http.get(this.baseUrl + "/user/get_current_user");
+  updateUser(id, formData) {
+    return this.http.put(this.baseUrl + "/user/userUpdate/" + id, formData);
   }
-  getCurrentUserId() {
-    return this.http.get(this.baseUrl + "/user/get_current_user_id");
+  getCurrentUser(id) {
+    return this.http.get(this.baseUrl + "/user/get_current_user/" + id);
   }
-  fetchAllGroups() {
-    return this.http.get(this.baseUrl + "/groups/get_group");
+  getCurrentUserId(id) {
+    return this.http.get(this.baseUrl + "/user/get_current_user_id/" + id);
+  }
+  fetchAllGroups(id) {
+    return this.http.get(this.baseUrl + "/groups/get_group/" + id);
   }
   fetchGroupType() {
     return this.http.get(this.baseUrl + "/group/get_group_type");

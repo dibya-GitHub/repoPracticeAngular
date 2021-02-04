@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { CommonService } from "../../service/common/common.service";
 import { Utils } from "src/app/shared/utils/utils";
+import { AuthService } from "src/app/service/common/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 @Component({
   selector: "app-profile-account",
@@ -13,11 +15,16 @@ export class ProfileAccountComponent implements OnInit {
   profileForm: FormGroup;
   currencyList: any;
   currentUser: any;
+  userId: any;
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private commonService: CommonService
-  ) {}
+    private commonService: CommonService,
+    private authService: AuthService,
+    private toastrService: ToastrService
+  ) {
+    this.userId = this.authService.getUserId();
+  }
 
   ngOnInit() {
     this.createForm();
@@ -43,7 +50,7 @@ export class ProfileAccountComponent implements OnInit {
   }
 
   getCurrentUser() {
-    this.commonService.getCurrentUser().subscribe((result: any) => {
+    this.commonService.getCurrentUser(this.userId).subscribe((result: any) => {
       if (result) {
         this.currentUser = result;
         this.profileForm.patchValue(this.currentUser);
@@ -54,10 +61,25 @@ export class ProfileAccountComponent implements OnInit {
   }
   onSubmit() {
     if (this.profileForm.valid) {
-      let values = this.profileForm.getRawValue();
-      delete values.email;
-      delete values.password;
-      console.log(values);
+      let formData = this.profileForm.getRawValue();
+      delete formData.email;
+      delete formData.password;
+      formData.created_by = "";
+      formData.updated_by = "";
+      formData.created_at = new Date();
+      formData.updated_at = new Date();
+      console.log(formData);
+      this.commonService
+        .updateUser(this.userId, formData)
+        .subscribe((result: any) => {
+          if (result) {
+            this.currentUser = result;
+            this.profileForm.patchValue(this.currentUser);
+            this.profileForm.get("email").disable();
+            this.profileForm.get("password").disable();
+            this.toastrService.success("Updated Successfully");
+          }
+        });
     } else {
       Utils.validateAllFormFields(this.profileForm);
     }

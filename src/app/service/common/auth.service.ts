@@ -1,29 +1,31 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable, Input } from "@angular/core";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
   isLoggedIn = false;
   constructor() {
-    const authToken = sessionStorage.getItem('token');
+    const authToken = sessionStorage.getItem("token");
     if (authToken) {
       this.isLoggedIn = true;
     }
   }
   setLoginInfo(data: any) {
-    sessionStorage.setItem('token', data.token);
+    sessionStorage.setItem("token", data.token);
+  }
+  getUserId() {
+    return sessionStorage.getItem("id");
   }
   getAuthToken() {
-    const authToken = sessionStorage.getItem('token');
+    const authToken = sessionStorage.getItem("token");
     return authToken;
   }
   clearToken() {
     this.isLoggedIn = false;
     sessionStorage.clear();
-
   }
   getUserData() {
-    return JSON.parse(sessionStorage.getItem('userData'));
+    return JSON.parse(sessionStorage.getItem("userData"));
   }
 }

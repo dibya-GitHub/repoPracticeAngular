@@ -1,0 +1,4 @@
+<ngx-numeric-textbox class="numeric-textbox" [min]="0" [max]="max" [disabled]="disabled" [decimals]="2"
+  [format]="'0,0.00'" [(ngModel)]="percent" [autoCorrect]="true" (blur)="onBlur()" [placeholder]="placeholder">
+</ngx-numeric-textbox>
+<div *ngIf="showPercentSymbol" class="prefix-div"><span>%</span></div>

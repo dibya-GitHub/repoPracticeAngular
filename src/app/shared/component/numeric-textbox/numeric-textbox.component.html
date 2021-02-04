@@ -1,0 +1,5 @@
+<ngx-numeric-textbox class="numeric-textbox" [min]="min" [max]="max" [disabled]="disabled" [decimals]="decimals"
+  [format]="format" [(ngModel)]="amount" (blur)="onBlur()" [placeholder]="placeholder" #numeric="ngModel">
+</ngx-numeric-textbox>
+<p class="err-msg inline-block" *ngIf="numeric.invalid">
+  Min value: {{min}}, Max value: {{max}}</p>

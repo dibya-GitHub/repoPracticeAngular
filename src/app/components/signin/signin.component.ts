@@ -5,7 +5,6 @@ import * as CryptoJS from "crypto-js";
 import { AuthService } from "src/app/service/common/auth.service";
 import { CommonService } from "src/app/service/common/common.service";
 import { LoaderService } from "./../../service/common/loader.service";
-import { ValidationHelperService } from "./../../shared/services/validate-helper.service";
 import { ToastrService } from "ngx-toastr";
 import { Utils } from "src/app/shared/utils/utils";
 
@@ -21,7 +20,6 @@ export class SigninComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private auth: AuthService,
-    private validationHelper: ValidationHelperService,
     private commonService: CommonService,
     private loaderService: LoaderService,
     private toastrService: ToastrService
@@ -72,7 +70,9 @@ export class SigninComponent implements OnInit {
         (data) => {
           this.loginForm.reset();
           this.auth.setLoginInfo(data);
-          this.commonService.getUserProfile().subscribe((resp) => {});
+          this.commonService.getUserProfile().subscribe((resp: any) => {
+            sessionStorage.setItem("id", resp._id);
+          });
           this.router.navigate(["dashboard"]);
           this.loaderService.isBusy = false;
         },
